@@ -1,0 +1,609 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title> Retina-Diag</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'land/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'land/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'land/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'land/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'land/css/style.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Medicio
+  * Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
+  * Updated: Mar 17 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex align-items-center justify-content-center justify-content-md-between">
+      <div class="align-items-center d-none d-md-flex">
+        <i class="bi bi-clock"></i>Sunday Monday Tuesday Wednesday, 8AM to 11PM & 1PM to 3PM
+      </div>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-phone"></i> Call us now +213783125929
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <a href="" class="logo me-auto"><img src="{% static 'land/img/retina12.png.lnk' %}"  alt=""></a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <h1 class="logo me-auto"><a href="index.html">Medicio</a></h1> -->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto " href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+
+      <a href="#appointment" class="appointment-btn scrollto"><span class="d-none d-md-inline">Make an</span> Appointment</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'log_reg_page' %}" class="appointment-btn scrollto" ><span class="d-none d-md-inline">dashboard</span> </a>
+      
+      {% else %}
+      <a href="{% url 'log_reg_page' %}" class="appointment-btn scrollto" ><span class="d-none d-md-inline">Login</span> </a>
+      {% endif %}
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url({% static 'land/img/slide/slide11.jpg' %}")">
+          <div class="container">
+            <h2>Welcome to <span>Retina </span></h2>
+            <p>Welcome to our eye clinic! Our medical team is here to provide the eye care you deserve. We hope that your experience with us will be comfortable and satisfactory. Thank you for choosing our clinic.</p>
+            <a href="#about" class="btn-get-started scrollto">Read More</a>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" style="background-image: url({% static 'land/img/slide/slide22.jpg' %}")">
+          <div class="container">
+            <h2>We provide the best services</h2>
+            <p>We aspire to be the leading clinic in providing distinguished and integrated health care, with a focus on innovation and continuous improvement of our services to meet the needs of our patients with the highest level of quality and personal attention.
+              We thank you for your trust in us and wish you good health and wellness</p>
+            <a href="#about" class="btn-get-started scrollto">Read More</a>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item" style="background-image: url({% static 'land/img/slide/slide-3.jpg' %}")">
+          <div class="container">
+            <h2>For contact and inquiries</h2>
+          <p>We are here to serve you and answer any questions regarding our medical services. Do not hesitate to contact us at any time, and we will be happy to provide you with the necessary assistance and support.</p>
+            <a href="#about" class="btn-get-started scrollto">Read More</a>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Cta Section ======= -->
+    <section id="cta" class="cta">
+      <div class="container" data-aos="zoom-in">
+
+        <div class="text-center">
+          <h3>In an emergency? Need help now?</h3>
+          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <a class="cta-btn scrollto" href="#appointment">Make an Make an Appointment</a>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>About Us</h2>
+          <p>The eyes are considered one of the most important organs of the human body that need special care. Therefore, specialized ophthalmology clinics play a vital role in maintaining healthy vision and treating various eye problems. This research aims to shed light on the components and importance of the private eye clinic, the services it provides, and the latest technologies used in this field..</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="{% static 'land/img/eyse1.jpg' %}"" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+            <h3> Our clinic works to provide a variety of specialized services to ensure the health and safety of your eyes. We provide these services in a comprehensive and detailed manner to ensure that all your visual and medical needs are met. Our services include:</h3>
+            <ul>
+              <li><i class="bi bi-check-circle"></i> Routine eye examination.</li>
+              <li><i class="bi bi-check-circle"></i> Diagnosis and treatment of diabetic retinopathy.</li>
+              <li><i class="bi bi-check-circle"></i> Diagnosis of retinal detachmen.</li>
+            </ul>
+            <p>
+              Regular examination and prompt treatment of symptoms can greatly contribute to maintaining eye and vision health.
+               Through awareness and effective management of chronic conditions, the impact of this disease can be reduced and the quality
+               of life of people with it can be improved
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- End About Us Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row"> <!--  row elemment de bostrap  pour organizer le matrice ( le colone et les ligne)-->
+          <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right">
+            <div class="icon-box mt-5 mt-lg-0"><!-- icon-box = des boites contenqnt de icon( titre, text ) -->
+                                                <!--mt-5 =  donne une grande marge de frais généraux.-->
+                                                <!-- mt-lg-0 = Supprime la marge supérieure -->
+              <i class="bx bx-receipt"></i> <!-- icone de bibliotaque box icon -->
+              <h4>Expected job announcement</h4>
+              <p>The result is something like nothing you have to do</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-cube-alt"></i>
+              <h4>Regulating blood sugar levels</h4>
+              <p>Blood sugar levels are controlled through a healthy diet, exercise, and medications.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-images"></i>
+              <h4>Pictures of diabetic retina </h4>
+              <p>The images show characteristic changes that reflect damage to blood vessels within the retina. These images help doctors assess the severity of the disease and determine appropriate treatment.</p>
+            </div>
+            <div class="icon-box mt-5">
+              <i class="bx bx-shield"></i>
+              <h4> Protection</h4>
+              <p> Information protection can be enhanced and the risk of security threats reduced. Always remember that protecting information is an ongoing process that requires regular updating and improvement.</p>
+            </div>
+          </div>
+          <div class="image col-lg-6 order-1 order-lg-2" style='background-image: url("{% static 'land/img/features1.jpg' %}");' data-aos="zoom-in"></div>
+          <!-- col-lg-6= L'image occupe la moitié de la page-->
+          <!--zoom-in = Effet d'image au toucher (zomi)-->
+        </div>
+
+      </div>
+    </section>
+    <!-- End Features Section -->
+
+    <!-- ======= Appointment Section ======= -->
+    <section id="appointment" class="appointment section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Make an Appointment</h2>
+          <p> Welcome to Retina Diabetic Retinal Clinic. We specialize in providing comprehensive care for patients with diabetic retinopathy and aim to improve and sustainably improve the health of your eyes. We are pleased to be a partner in your journey to maintain healthy and clear vision. We are here to provide the best medical services and assistance at every stage.” From treating diabetic retina, do not hesitate to contact us to schedule a consultation with an eye specialist who specializes in diabetic retina.</p>
+        </div>
+
+        <form action="forms/appointment.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+            </div>
+            <div class="col-md-4 form-group mt-3 mt-md-0">
+              <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 form-group mt-3">
+              <input type="date" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required>
+            </div>
+            <div class="col-md-4 form-group mt-3">
+              <select name="doctor" id="doctor" class="form-select">
+                <option value="Doctor 1"> Select doctor</option>
+                <option value="Doctor 1">Doctor 1</option>
+                <option value="Doctor 2">Doctor 2</option>
+              </select>
+            </div>
+          </div>
+          <div class="appointment"><button type="submit"> Envoyer</button></div>
+        </form>
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2> Reviews </h2>
+          <p> Thank you for the opportunity to express your opinion. We always welcome your opinions and ratings, as they help us improve our
+             services and better meet your needs. So, do not hesitate to share your opinions and comments, as we are here to listen and work to
+             develop our services based on your valuable comments.</p>
+        </div>
+        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  Thank you for your excellent service, I will recommend your clinic to my friends and family.
+                  My experience at your clinic was comfortable and professional, thank you.
+                  Thank you for your wonderful care, I will definitely be back in the future.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="{% static 'land/img/testimonials/testimonials-2.jpg' %}"" class="testimonial-img" alt="">
+                <h3>Sara  hamri </h3>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  The service was good, but there was some delay in the appointment. Maybe time management could be improved.
+                  But I think adding more reading material in the waiting room would be helpful, and the medical staff was professional.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="{% static 'land/img/testimonials/testimonials-3.jpg' %}"" class="testimonial-img" alt="">
+                <h3> Fadia moukran </h3>
+
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  The clinic is very clean and tidy, reflecting great attention to detail.
+                  I loved the calm and relaxed atmosphere of the clinic, it made my visit less stressful.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="{% static 'land/img/testimonials/testimonials-4.jpg' %}"" class="testimonial-img" alt="">
+                <h3> Ahmed salmi </h3>
+
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                  I was really impressed with the attention to detail and personal care I received at your clinic, thanks for the great experience.
+                  The clinic provides a very comfortable environment for patients, which made my visit a positive experience.
+                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                </p>
+                <img src="{% static 'land/img/testimonials/testimonials-5.jpg' %}"" class="testimonial-img" alt="">
+                <h3> Jamel hadji</h3>
+
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Doctors Section ======= -->
+    <section id="doctors" class="doctors section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Doctors</h2>
+          <p> Doctors here demonstrate a high level of cooperation and mutual respect, which reflects positively on the patients’ experience.
+            The teamwork among the doctors in the clinic is exemplary, thank you all for the wonderful care.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="100">
+              <div class="member-img">
+                <img src="{% static 'land/img/doctors/doctors-1.jpg' %}"" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> Islam Madani </h4>
+                <span>Chief Medical Officer</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="{% static 'land/img/doctors/doctors-2.jpg' %}"" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> Dr Wissam Nour </h4>
+                <span> Ophthalmologist</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="300">
+              <div class="member-img">
+                <img src="{% static 'land/img/doctors/doctors-3.jpg' %}"" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> Dr Moustapha  Boumadian </h4>
+                <span> Ophthalmologist</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="400">
+              <div class="member-img">
+                <img src="{% static 'land/img/doctors/doctors-4.jpg' %}"" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4> Dr Amani Maliani </h4>
+                <span>Neurosurgeon</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Doctors Section -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Gallery</h2>
+          <p> Diabetic retinopathy is a serious condition that requires constant awareness and attention. With good management of blood sugar levels 
+            and regular checkups, the risk of infection can be reduced and eye health can be maintained. Early diagnosis and effective treatment are key
+            to preserving vision and preventing complications.</p>
+        </div>
+
+        <div class="gallery-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><a class="gallery-lightbox" href="{% static 'land/img/gallery/g1.jpg' %}""><img src="{% static 'land/img/gallery/g1.jpg' %}"" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="{% static 'land/img/gallery/g2.jpg' %}""><img src="{% static 'land/img/gallery/g2.jpg' %}"" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="{% static 'land/img/gallery/g3.jpg' %}""><img src="{% static 'land/img/gallery/g3.jpg' %}"" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="{% static 'land/img/gallery/g4.jpg' %}""><img src="{% static 'land/img/gallery/g4.jpg' %}"" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="{% static 'land/img/gallery/g5.jpg' %}""><img src="{% static 'land/img/gallery/g5.jpg' %}"" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="gallery-lightbox" href="{% static 'land/img/gallery/g6.jpg' %}""><img src="{% static 'land/img/gallery/g6.jpg' %}"" class="img-fluid" alt=""></a></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+
+
+    <!-- ======= Frequently Asked Questioins Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>  Most frequently asked questions</h2>
+        </div>
+
+        <ul class="faq-list">
+
+          <li>
+            <div data-bs-toggle="collapse" class="collapsed question" href="#faq1"> What is diabetic retinopathy? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq1" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Diabetic retinopathy is a condition related to damage to the retina in the eye as a result of diabetes. High blood sugar
+                levels can cause changes in the blood vessels inside the eye, leading to double vision or even loss of vision in severe cases.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq2" class="collapsed question">What are the common symptoms of diabetic retinopathy? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq2" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Some common symptoms include blurry vision, dark spots in the field of vision (sidesight), changes in night vision, and gradual loss of vision.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq3" class="collapsed question"> What factors increase the risk of diabetic retinopathy? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq3" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Factors that increase the risk of developing diabetic retinopathy include having diabetes for a long time, not well-controlled blood sugar levels, high blood pressure, and high levels of cholesterol and fats in the blood.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq4" class="collapsed question"> How is diabetic retinopathy diagnosed? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq4" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Diabetic retinopathy is usually diagnosed through eye examinations such as fundus examination (photographic or sonographic) and visual focus examination. You may be asked to visit an ophthalmologist to determine the progress of the disease and determine appropriate treatment.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div data-bs-toggle="collapse" href="#faq5" class="collapsed question"> What treatments are available for diabetic retinopathy? <i class="bi bi-chevron-down icon-show"></i><i class="bi bi-chevron-up icon-close"></i></div>
+            <div id="faq5" class="collapse" data-bs-parent=".faq-list">
+              <p>
+                Treatments available for diabetic retinopathy include effective control of blood sugar levels, healthy lifestyle modifications such as eating healthy food and exercising, and in some severe cases, drug or surgical treatment is used to maintain eye health and preserve vision.
+              </p>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </section><!-- End Frequently Asked Questioins Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          </p>
+        </div>
+
+      </div>
+      <div class="container">
+
+        <div class="row mt-5">
+
+          <div class="col-lg-6">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="info-box">
+                  <i class="bx bx-map"></i>
+                  <h3>Our Address</h3>
+                  <p> Rue 12 hajout , Tipazza</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-box mt-4">
+                  <i class="bx bx-envelope"></i>
+                  <h3>Email Us</h3>
+                  <p>info@example.com<br> Retina-diag@gmail.com</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-box mt-4">
+                  <i class="bx bx-phone-call"></i>
+                  <h3>Call Us</h3>
+                  <p> 0456987422<br> 0783125929</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+            <form method="post" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required="">
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="7" placeholder="Message" required=""></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center">
+                <button type="submit"> send message</button>
+              </div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+        
+      <div class="copyright">
+        &copy; Copyright <strong><span> Retina-Diag</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'land/vendor/purecounter/purecounter_vanilla.js' %}""></script>
+  <script src="{% static 'land/vendor/aos/aos.js' %}""></script>
+  <script src="{% static 'land/vendor/bootstrap/js/bootstrap.bundle.min.js' %}""></script>
+  <script src="{% static 'land/vendor/glightbox/js/glightbox.min.js' %}""></script>
+  <script src="{% static 'land/vendor/swiper/swiper-bundle.min.js' %}""></script>
+  <script src="{% static 'land/vendor/php-email-form/validate.js' %}""></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'land/js/main.js' %}""></script>
+
+</body>
+
+</html>

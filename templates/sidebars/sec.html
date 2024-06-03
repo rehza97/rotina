@@ -1,0 +1,43 @@
+<div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu" class="sidebar-menu">
+       <ul>
+          <li class="menu-title">
+             <span>Main Menu</span>
+          </li>
+          <li class="submenu">
+             <a href="#"><i class="fas fa-user-graduate"></i> <span> Dashboard</span> <span class="menu-arrow"></span></a>
+             <ul>
+                <li><a href="{% url 'secretary:home' %}">Dashboard</a></li>
+
+             </ul>
+          </li>
+          <li class="submenu">
+             <a href="#"><i class="fas fa-user-graduate"></i> <span>Patients</span> <span class="menu-arrow"></span></a>
+             <ul>
+                <li><a href="{% url "secretary:create_patient" %}">create a profile</a></li>
+                <li><a href="{% url "secretary:patient_list" %}">List of petient</a></li>
+             </ul>
+          </li>
+          <li class="submenu">
+             <a href="#"><i class="fas fa-user-graduate"></i> <span>Appointments</span> <span class="menu-arrow"></span></a>
+             <ul>
+                 <li><a href="{% url 'secretary:create_appointment' %}">reserve Appointments</a></li>
+                <li><a href="{% url 'secretary:appointment_list' %}">list of Appointments</a></li>
+                <li><a href="">Payments</a></li>
+             </ul>
+          </li>
+          <li class="submenu">
+             <a href="#"><i class="fas fa-user-graduate"></i> <span>History</span> <span class="menu-arrow"></span></a>
+             <ul>
+                 <li><a href="">Patients</a></li>
+                <li><a href="">Appointments</a></li>
+                <li><a href="">Payments</a></li>
+             </ul>
+          </li>
+
+
+
+
+       </ul>
+    </div>
+ </div>

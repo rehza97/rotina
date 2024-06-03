@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+  collecteurs
+{% endblock title %}
+
+{% block content %}
+<div class="page-header">
+  <div class="row align-items-center">
+    <div class="col">
+      <h3 class="page-title">Patients</h3>
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Patients</li>
+      </ul>
+    </div>
+    <div class="col-auto text-right float-right ml-auto">
+      <a href="{% url 'secretary:create_patient' %}" class="btn btn-outline-primary mr-2"
+        ></i> add new Patient</a>
+      
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table
+   id="table_id"
+     class="table table-hover table-center mb-0 "
+   > 
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+
+                <th class="text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                {% for persone in sects %}
+              <tr>
+                
+                <td>
+                  <h2>
+                    <a>{{persone.first_name}} {{persone.last_name}}</a>
+                  </h2>
+                </td>
+                <td>{{persone.email}}</td>
+                <td>{{persone.phone}}</td>
+
+                <td>{{persone.gender}}</td>
+                <td class="text-right">
+                  <div class="actions">
+                    <a
+                      href=""
+                      class="btn btn-sm bg-success-light "
+                    >
+                    <i class="fas fa-archive"></i>
+
+                    </a>
+                    <a href="{% url 'secretary:delete_patient' persone.id %}" class="btn btn-sm bg-danger-light">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                    <a href="{% url 'secretary:update_patient' persone.id %}" class="btn btn-sm btn btn-danger">
+
+                      <i class="fas fa-user-edit"></i>
+                      
+                    </a>
+                  </div>
+                </td>
+              </tr>
+                
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sliding Login Form</title>
+    <link href="{% static 'login/login4.css' %}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel='stylesheet'>
+</head>
+<body>
+    <div class="container" id="main">
+        <div class="sign-up">
+            <form action="{% url 'Registration' %}" method="POST">
+                {% csrf_token %}
+                <h1 style="margin-bottom: 20px; border-bottom: 1p solid black;">Create Account</h1>
+                
+
+                {% if creation.errors %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+
+                <hr>
+                {% render_field creation.first_name class="form-control" placeholder='first_name' required=true %}
+                {% render_field creation.last_name class="form-control" placeholder='last name' required=true %}
+                {% render_field creation.username class="form-control" placeholder='email' required=true %}
+                {% render_field creation.password1 class="form-control" placeholder='password' required=true %}
+                {% render_field creation.password2 class="form-control" placeholder='password confimation' required=true %}
+                <!-- {{creation}} -->
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="sign-in">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <h1>Login</h1>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+                <div>
+                    <input type="email" name="username" placeholder="Email" required>
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us, please login with your personal info</p>
+                    <button id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-right">
+                    <h1>Hello!</h1>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'login/script4.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  {{persone.first_name}} {{persone.last_name}} profile
+{% endblock title %}
+
+{% block content %}
+  
+               <div class="page-header">
+                  <div class="row">
+                     <div class="col">
+                        <h3 class="page-title">Profile</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Profile</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="profile-header">
+                        <div class="row align-items-center">
+                           <div class="col ml-md-n2 profile-user-info">
+                              <h4 class="user-name mb-0">  {{persone.first_name}} {{persone.last_name}}</h4>
+                              {% if context.is_patient %}
+                              <h6 class="text-muted">patient</h6>
+                              {% elif context.doctor %}
+                              <h6 class="text-muted">doctor</h6>
+                              {% elif context.is_secretary %}
+                              <h6 class="text-muted">secretar</h6>
+                              {% elif context.is_admin %}
+                              <h6 class="text-muted">Administrator</h6>
+                            {% endif %}                              
+                           </div>
+                        </div>
+                     </div>
+                     <div class="profile-menu">
+                        <ul class="nav nav-tabs nav-tabs-solid">
+                           <li class="nav-item">
+                              <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                           </li>
+                           {% if user.is_doctor %}
+                           <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#Prescription">Prescription</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#Medical_Certificat">Medical Certificat</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#Analyses">Analyses</a>
+                           </li>
+                             
+                           {% endif %}
+                        </ul>
+                     </div>
+                     <div class="tab-content profile-tab-cont">
+                        <div class="tab-pane fade show active" id="per_details_tab">
+                           <div class="row">
+                              <div class="col-lg-12">
+                                 <div class="card">
+                                    <div class="card-body">
+                                       <h5 class="card-title d-flex justify-content-between">
+                                          <span>Personal Details</span>
+                                       </h5>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
+                                          <p class="col-sm-9"> {{user.first_name}} {{user.last_name}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
+                                          <p class="col-sm-9">{{user.birthday}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
+                                          <p class="col-sm-9">{{user.username}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Mobile</p>
+                                          <p class="col-sm-9">{{user.phone}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0">Address</p>
+                                          <p class="col-sm-9 mb-0">{{user.street}}<br>
+                                             {{user.commun}}<br>
+                                             {{user.wilaya}} - {{user.postal_code}}<br>
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                           </div>
+                        </div>
+                        <div id="Prescription" class="tab-pane fade">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Prescription</h5>
+                                 <div class="row">
+                                    <div class="col-md-10 col-lg-6">
+
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="Medical_Certificat" class="tab-pane fade">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Change Password</h5>
+                                 <div class="row">
+                                    <div class="col-md-10 col-lg-6">
+                                       <form>
+
+                                          <a class="btn btn-primary" href="{% url "password_change" %}" type="submit">edit password</a>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="Analyses" class="tab-pane fade">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Change Password</h5>
+                                 <div class="row">
+                                    <div class="col-md-10 col-lg-6">
+                                       <form>
+
+                                          <a class="btn btn-primary" href="{% url "password_change" %}" type="submit">edit password</a>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+{% endblock content %}
+       

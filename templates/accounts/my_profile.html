@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  {{user.first_name}} {{user.last_name}} profile
+{% endblock title %}
+
+{% block content %}
+  
+               <div class="page-header">
+                  <div class="row">
+                     <div class="col">
+                        <h3 class="page-title">Profile</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Profile</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="profile-header">
+                        <div class="row align-items-center">
+                           <div class="col ml-md-n2 profile-user-info">
+                              <h4 class="user-name mb-0">  {{user.first_name}} {{user.last_name}}</h4>
+                              {% if user.is_patient %}
+                              <h6 class="text-muted">patient</h6>
+                              {% elif user.doctor %}
+                              <h6 class="text-muted">doctor</h6>
+                              {% elif user.is_secretary %}
+                              <h6 class="text-muted">secretar</h6>
+                              {% elif user.is_admin %}
+                              <h6 class="text-muted">Administrator</h6>
+                            {% endif %}                              
+                           </div>
+                           <div class="col-auto profile-btn">
+                              <a href="{% url 'update_profile' %}" class="btn btn-primary">
+                              Edit
+                              </a>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="profile-menu">
+                        <ul class="nav nav-tabs nav-tabs-solid">
+                           <li class="nav-item">
+                              <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
+                           </li>
+                        </ul>
+                     </div>
+                     <div class="tab-content profile-tab-cont">
+                        <div class="tab-pane fade show active" id="per_details_tab">
+                           <div class="row">
+                              <div class="col-lg-9">
+                                 <div class="card">
+                                    <div class="card-body">
+                                       <h5 class="card-title d-flex justify-content-between">
+                                          <span>Personal Details</span>
+                                          <a class="edit-link" data-toggle="modal" href="{% url 'update_profile' %}"><i class="far fa-edit mr-1"></i>Edit</a>
+                                       </h5>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
+                                          <p class="col-sm-9"> {{user.first_name}} {{user.last_name}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
+                                          <p class="col-sm-9">{{user.birthday}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
+                                          <p class="col-sm-9">{{user.username}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Mobile</p>
+                                          <p class="col-sm-9">{{user.phone}}</p>
+                                       </div>
+                                       <div class="row">
+                                          <p class="col-sm-3 text-muted text-sm-right mb-0">Address</p>
+                                          <p class="col-sm-9 mb-0">{{user.street}}<br>
+                                             {{user.commun}}<br>
+                                             {{user.wilaya}} - {{user.postal_code}}<br>
+                                          </p>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              
+                           </div>
+                        </div>
+                        <div id="password_tab" class="tab-pane fade">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Change Password</h5>
+                                 <div class="row">
+                                    <div class="col-md-10 col-lg-6">
+                                       <form>
+
+                                          <a class="btn btn-primary" href="{% url "password_change" %}" type="submit">edit password</a>
+                                       </form>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+{% endblock content %}
+       

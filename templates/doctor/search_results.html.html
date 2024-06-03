@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}
+  profile creation
+{% endblock title %}
+
+{% block content %}
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="form-title"><span>Basic Details</span></h5>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>First Name</label>
+                          {% render_field form.first_name class="form-control"  placeholder='first name'  required=true  %}
+
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Last Name</label>
+                          {% render_field form.last_name class="form-control"  placeholder='last name'  required=true %}
+
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            
+                          {% render_field form.gender class="form-control"   required=true %}
+                            
+                          </div>
+                    </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Date of Birth</label>
+                          {% render_field form.birthday class="form-control"   required=true %}
+                          
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Mobile</label>
+                          {% render_field form.phone class="form-control"  placeholder='0123456789' required=true %}
+                          
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>chifa number <small>make sure this number is unique</small></label>
+                          {% render_field form.num_chifa class="form-control"  placeholder='01234567891234596798' required=true %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Blood Type</label>
+                          {% render_field form.blood_type class="form-control"  required=true %}
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <h5 class="form-title"><span>Login Details</span></h5>
+                      </div>
+                      
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Email</label>
+                          {% render_field form.username class="form-control"  required=true %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Password</label>
+                          {% render_field form.password class="form-control"   %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Repeat Password</label>
+                          {% render_field form.password_confirm class="form-control"   %}
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <h5 class="form-title"><span>Address</span></h5>
+                      </div>
+                      
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Street</label>
+                          {% render_field form.street class="form-control"  placeholder='Street' required=true %}
+                          
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>commun</label>
+                          {% render_field form.commun class="form-control"  placeholder='commun' required=true %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Wilaya</label>
+                          {% render_field form.wilaya class="form-control"  placeholder='Wilaya' required=true %}
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Zip Code</label>
+                          {% render_field form.postal_code class="form-control"  placeholder='Zip code' required=true %}
+                        </div>
+                      </div>
+                      
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-primary">
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+{% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block title %}
+  
+{% endblock title %}
+{% block content %}
+<div class="page-header">
+    <div class="row">
+       <div class="col">
+          <h3 class="page-title">Change Password</h3>
+          <ul class="breadcrumb">
+             <li class="breadcrumb-item"><a href="index.html">Profile</a></li>
+             <li class="breadcrumb-item active">Change Password</li>
+          </ul>
+       </div>
+    </div>
+ </div>
+ <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-12">
+                <h5 class="form-title"><span>Change Password</span></h5>
+              </div>
+
+              
+              <div class="col-12">
+                <button type="submit" class="btn btn-danger">Yes, delete</button>
+                <a href="{% url 'secretary:patient_list' %}" class="btn btn-secondary">Cancel</a>
+              </div>
+              <div class="col-12">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
