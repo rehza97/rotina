@@ -27,7 +27,7 @@ def creation_page(request):
 
 
 def create_account(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated :
             return redirect('patient:profile_creation')
     if request.method == 'POST':
         creation = CustomUserCreationForm(request.POST)
@@ -69,7 +69,16 @@ def login_url(request):
         
         if user is not None:
             login(request, user)
-            return redirect('patient:profile_creation')
+            if not user.profile :
+                return redirect('patient:profile_creation')
+            elif request.user.is_patient:
+                return redirect('patient:home')
+            elif request.user.is_secretary:
+                return redirect('secretary:home')
+            elif request.user.is_doctor:
+                return redirect('doctor:home')
+            else:
+                return redirect('admn:home')
         else:
 
             context = {

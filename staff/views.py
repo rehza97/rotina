@@ -101,12 +101,14 @@ def create_appointment(request):
         patient = Account.objects.get(username=patient)
         print(patient)
         date = request.POST.get('date')
+        time = request.POST.get('time')
         note = request.POST.get('note')
         accepte = request.POST.get('accepte')
         appointment = Appointment.objects.create(
             patient = patient,
             note = note,
             date = date,
+            time = time,
             validate = True
         )
         messages.success(request, 'Appointment created successfully.')
@@ -133,18 +135,22 @@ def appointment_list(request):
 @user_passes_test(is_staff,login_url='home')
 def update_appointment(request, id):
     appointment = get_object_or_404(Appointment, id=id)
-    
+    pay =None
+    if appointment.paied:
+        pay = appointment.id
+        pay = Paymenets.objects.get(id=appointment.paied.id)
     if request.method == 'POST':
         form = UpdateAppointmentForm(request.POST, instance=appointment)
         if form.is_valid():
             form.save()
             messages.success(request, 'Appointment updated successfully.')
-            return redirect('your_redirect_url')  # Replace with your redirect URL
+            return redirect('secretary:appointment_list')
     else:
         form = UpdateAppointmentForm(instance=appointment)
     
     context = {
         'form': form,
+        'pay': pay,
         'appointment': appointment,
     }
     return render(request, 'staff/update_appointments.html', context)
@@ -156,11 +162,21 @@ def delete_appointment(request,id):
     appointment.delete()
     return redirect('secretary:appointment_list')
 
+
+
 def archive_appointment(request,id):
     pass
 
-def create_payement(request):
-    pass
+def create_payment(request, id):
+    appointment = get_object_or_404(Appointment, id=id)  
+    print('____________________________')
+    print(appointment)
+    if request.method == 'POST':
+        price = request.POST.get('money')
+        payment = Paymenets.objects.create(price=price)
+        appointment.paied = payment  
+        appointment.save()   
+        return redirect('secretary:appointment_list')
 
 def payement_list(request):
     pass
@@ -174,4 +190,40 @@ def delete_payement(request,id):
 def archive_payement(request,id):
     pass
 
+def accept_app(request,id):
+    app = Appointment.objects.get(id=id)
+    app.validate = True
+    app.save()
+    return redirect('secretary:appointment_list')
 
+
+def family(request):
+    if request.method == 'POST':
+        family = request.POST.get('family')
+        if family:
+            MedFam.objects.create(name=family)
+            return redirect('secretary:med') 
+
+    return render(request, 'staff/add_family.html')
+        
+    
+def med(request):
+    family = MedFam.objects.all()
+    if request.method == 'POST':
+        fam_id = request.POST.get('fam_id')
+        title = request.POST.get('title')
+        if fam_id and title:
+            family_instance = get_object_or_404(MedFam, name=fam_id)
+            Meddication.objects.create(
+                family=family_instance,
+                name=title
+            )
+            return redirect('secretary:med_list') 
+    return render(request, 'staff/add_med.html', {'family': family})
+
+def med_list(request):
+    meds = Meddication.objects.all()
+    context = {
+        'meds' : meds
+    }
+    return render(request , 'staff/list_meds.html',context)

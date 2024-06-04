@@ -18,11 +18,16 @@ urlpatterns = [
     path('archive_appointment/<int:id>',archive_appointment,name="archive_appointment"),
     # payement
     
-    path('create_payement/',create_payement,name="create_payement"),
+    path('create_payement/<int:id>',create_payment,name="create_payment"),
     path('payement_list/',payement_list,name="payement_list"),
     path('update_payement/',update_payement,name="update_payement"),
     path('update_payement/',update_payement,name="update_payement"),
     path('update_payement/',update_payement,name="update_payement"),
     # path('make_appointmenets/',make_appointmenets,name="make_appointmenets"),
     # path('make_payement/',make_payement,name="make_payement"),
+    path('accept_app/<int:id>',accept_app,name="accept_app"),
+    path('family/',family,name="family"),
+    path('med/',med,name="med"),
+    path('med_list/',med_list,name="med_list"),
+    
 ]

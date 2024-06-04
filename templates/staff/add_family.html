@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %} {% endblock title %} 
+{% block content %}
+
+<div class="page-header">
+  <div class="row align-items-center">
+    <div class="col">
+      <h3 class="page-title">Add Family</h3>
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="expenses.html">Dashboard</a></li>
+        <li class="breadcrumb-item active">Add Family</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+          <div class="row">
+            <div class="col-12">
+              <h5 class="form-title"><span>Family Information</span></h5>
+            </div>
+            
+
+ 
+
+            <div class="form-group row col-12 col-sm-12">
+                <label class="col-form-label col-md-3">family title</label>
+                <div class="col-md-9">
+                  <div class="form-group">
+                    <label>
+                      <input type="text" name="family" class="form-control" required>  
+                    </label>
+                  </div>
+
+ 
+                </div>
+              </div>
+
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

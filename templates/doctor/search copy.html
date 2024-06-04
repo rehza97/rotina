@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}
+    Patient Details
+{% endblock title %}
+
+{% block content %}
+<style>
+    input {
+        color: black !important;
+    }
+</style>
+
+<div class="row">
+    <div class="top-nav-search">
+        <form method="POST" action="{% url 'doctor:search' %}">
+            {% csrf_token %}
+            <input type="text" class="form-control" list="patient" name="username" placeholder="Search here">
+            <datalist id="patient">
+                {% for acc in myfilter %}
+
+                <option value="{{acc}}">{{acc}}</option>
+                {% endfor %}
+              </datalist>
+            <button class="btn info" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title d-flex justify-content-between">
+                    <span>Patient Details</span>
+                </h5>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name</p>
+                    <p class="col-sm-9">{{ patients.first_name }} {{ patients.last_name }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Date of Birth</p>
+                    <p class="col-sm-9">{{ patients.birthday }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Email ID</p>
+                    <p class="col-sm-9">{{ patients.username }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Mobile</p>
+                    <p class="col-sm-9">{{ patients.phone }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Blood Type</p>
+                    <p class="col-sm-9">{{ patients.blood_type }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Gender</p>
+                    <p class="col-sm-9">{{ patients.gender }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Chifa Number</p>
+                    <p class="col-sm-9">{{ patients.num_chifa }}</p>
+                </div>
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0">Address</p>
+                    <p class="col-sm-9 mb-0">
+                        {{ patients.street }}<br>
+                        {{ patients.commun }}<br>
+                        {{ patients.wilaya }} - {{ patients.postal_code }}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <button type="button" class="btn btn-info btn-lg">Upload Photo</button>
+                <button type="button" class="btn btn-info btn-lg">Print Prescription</button>
+                <button type="button" class="btn btn-info btn-lg">Analyses</button>
+                <button type="button" class="btn btn-info btn-lg">Appication</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

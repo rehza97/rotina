@@ -5,10 +5,10 @@
 <div class="page-header">
   <div class="row align-items-center">
     <div class="col">
-      <h3 class="page-title">Add Appointmenet</h3>
+      <h3 class="page-title">Add Family</h3>
       <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="expenses.html">Dashboard</a></li>
-        <li class="breadcrumb-item active">Add Appointmenet</li>
+        <li class="breadcrumb-item active">Add Family</li>
       </ul>
     </div>
   </div>
@@ -22,52 +22,36 @@
             {% csrf_token %}
           <div class="row">
             <div class="col-12">
-              <h5 class="form-title"><span>Appointmenet Information</span></h5>
+              <h5 class="form-title"><span>Family Information</span></h5>
             </div>
             
+
+ 
             <div class="col-12 col-sm-12">
               <div class="form-group">
-                <label>Patient Email</label>
+                <label>med family</label>
                 <input
                   type="text"
                   class="form-control"
                   list="patient"
-                  placeholder="patient email"
-                  name="patient"
+                  placeholder=""
+                  name="fam_id"
 
                 />
                 <datalist id="patient">
-                  {% for acc in accounts %}
+                  {% for acc in family %}
 
                   <option value="{{acc}}">{{acc}}</option>
                   {% endfor %}
                 </datalist>
               </div>
             </div>
-            <div class="col-12 col-sm-6">
-              <div class="form-group">
-                <label>time</label>
-                <input type="time" name="date" class="form-control" />
-              </div>
-            </div>
-            <div class="col-12 col-sm-6">
-              <div class="form-group">
-                <label>Date</label>
-                <input type="date" name="date" class="form-control" />
-              </div>
-            </div>
             <div class="form-group row col-12 col-sm-12">
-                <label class="col-form-label col-md-2">Note</label>
-                <div class="col-md-10">
-                  <textarea rows="5" cols="5" class="form-control" placeholder="Enter note here" name="note"></textarea>
-                </div>
-              </div>
-            <div class="form-group row col-12 col-sm-12">
-                <label class="col-form-label col-md-3">Accepte</label>
+                <label class="col-form-label col-md-3">family title</label>
                 <div class="col-md-9">
-                  <div class="checkbox">
+                  <div class="form-group">
                     <label>
-                      <input type="checkbox" name="accepte"> Valide 
+                      <input type="text" name="title" class="form-control" required>  
                     </label>
                   </div>
 

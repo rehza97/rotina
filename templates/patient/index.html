@@ -23,5 +23,48 @@
 
 
 
+          <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+
+                  <div class="row">
+                    <div class="col-lg-12">
+
+                          {% if appointment %}
+                            <div class="card-body">
+                                <h5 class="card-title d-flex justify-content-between">
+                                    <span>Appointment Details</span>
+                                </h5>
+                                <div class="row">
+                                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Appointment Date</p>
+                                    <p class="col-sm-9">{{ appointment.date }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Appointment Time</p>
+                                    <p class="col-sm-9">{{ appointment.date }}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Note</p>
+                                    <p class="col-sm-9">{{  appointment.note }}</p>
+                                </div>
+
+                            </div>
+                            {% else %}
+                            <p>{{ err }}</p>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+ 
+                
+
+
+                </div>
+            </div>
+        </div>
+        
+
+
+
 
 {% endblock content %}

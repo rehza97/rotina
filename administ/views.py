@@ -17,6 +17,7 @@ def create_doctor(request):
             user.email = user.username
             user.profile = True
             user.save()
+            Doctor.objects.create(user=user)
             messages.success(request, 'Account created successfully.')
             return redirect('login')  # Redirect to the login page or another page
     else:
@@ -36,12 +37,13 @@ def create_sect(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_secretary = True  
+            user.is_secretary = True
             user.email = user.username
             user.profile = True
             user.save()
+            Secretary.objects.create(user=user)
             messages.success(request, 'Account created successfully.')
-            return redirect('login')  # Redirect to the login page or another page
+            return redirect('login')
     else:
         form = RegistrationForm()
     return render(request, 'administrateur/profile_creation_sect.html', {'form': form})
@@ -63,6 +65,7 @@ def create_patient(request):
             user.email = user.username
             user.profile = True
             user.save()
+            Patient.objects.create(user=user)
             messages.success(request, 'Account created successfully.')
             return redirect('login')  # Redirect to the login page or another page
     else:

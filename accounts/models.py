@@ -55,15 +55,14 @@ class Chronic(models.Model):
 class Appointment(models.Model):
     patient = models.ForeignKey(Account, on_delete=models.CASCADE, blank=True, null=True)
     note = models.TextField()
-    date = models.DateTimeField()
+    date = models.DateField()
+    time = models.TimeField(blank=True, null=True)
     validate = models.BooleanField(default=False, blank=True, null=True)
-    paied = models.BooleanField(default=False, blank=True, null=True)
+    paied = models.ForeignKey('Paymenets' , on_delete=models.CASCADE,blank=True, null=True)
 
-    def __str__(self):
-        return f'for {self.patient.first_name} at {self.date}'
+
 
 class Paymenets(models.Model):
-    Appointment = models.ForeignKey(Appointment , on_delete=models.CASCADE)
     price = models.CharField(max_length=20)
 
     
@@ -86,7 +85,10 @@ class Prescription(models.Model):
 
 class MedFam(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
+    
+    def __str__(self) -> str:
+        return self.name
 
 class Meddication(models.Model):
     family = models.ForeignKey(MedFam, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255)

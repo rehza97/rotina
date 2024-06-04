@@ -23,21 +23,18 @@ class AccountUpdateForm(UserChangeForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['patient', 'note', 'date']
+        fields = ['patient', 'note', 'date', 'time', 'validate', 'paied']
         widgets = {
-            'patient': forms.Select(attrs={'class': 'form-control'}),
-            'note': forms.Textarea(attrs={'class': 'form-control'}),
-            'date': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
         }
 
         
 class UpdateAppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['patient', 'note', 'date','validate']
+        fields = ['patient', 'note', 'date', 'time', 'validate', 'paied']
         widgets = {
-            'patient': forms.Select(attrs={'class': 'form-control'}),
-            'note': forms.Textarea(attrs={'class': 'form-control'}),
-            'date': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'time': forms.TimeInput(attrs={'type': 'time'}),
         }
-

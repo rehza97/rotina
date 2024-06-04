@@ -36,8 +36,10 @@
               <tr>
                 <th>Name</th>
                 <th>Date</th>
+                <th>time</th>
                 <th>note</th>
                 <th>Valide</th>
+                <th>paid</th>
 
                 <th class="text-right">Action</th>
               </tr>
@@ -54,23 +56,31 @@
                 </td>
                 <td>{{persone.date}}</td>
                 <td>{{persone.note|truncatechars:30}}</td>
+                {% if persone.time %}
+                <td>{{persone.time}}</td>
+                
+                {% else %}
+                <td>time isn't set yet</td>
+                {% endif %}
                 <td>{{persone.validate}}</td>
+                {% if persone.paied %}
+                <td>paied</td>
+                {% else %}
+                <td>not yet</td>
+                {% endif %}
                 <td class="text-right">
                   <div class="actions">
-                    <a
-                      href=""
-                      class="btn btn-sm bg-success-light "
-                    >
-                    <i class="fas fa-archive"></i>
 
+                    <button type="button" class="btn btn-sm bg-success-light" data-toggle="modal" data-target="#uploadPhotoModal{{persone.id}}"><i class="fas fa-dollar-sign"></i></button>
+                    <a href="{% url 'secretary:accept_app' persone.id %}" class="btn btn-sm bg-success-light ">
+                      <i class="fas fa-check"></i>
                     </a>
-                    <a href="{% url 'secretary:delete_appointment' persone.id %}" class="btn btn-sm bg-danger-light">
-                      <i class="fas fa-trash"></i>
-                    </a>
-                    <a href="{% url 'secretary:update_appointment' persone.id %}" class="btn btn-sm btn btn-danger">
 
+                    <a href="{% url 'secretary:update_appointment' persone.id %}" class="btn btn-sm btn bg-danger-light ">
                       <i class="fas fa-user-edit"></i>
-                      
+                    </a>
+                    <a href="" class="btn btn-sm btn-danger">
+                      <i class="fas fa-trash"></i>
                     </a>
                   </div>
                 </td>
@@ -85,4 +95,33 @@
     </div>
   </div>
 </div>
+{% for persone in appointment %}
+  
+
+<div class="modal fade" id="uploadPhotoModal{{persone.id}}" tabindex="-1" role="dialog" aria-labelledby="uploadPhotoModalLabel{{persone.id}}" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="uploadPhotoModalLabel">Payments</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <form method="POST" action="{% url 'secretary:create_payment' persone.id %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="modal-body">
+                  <div class="form-group">
+                      <label for="photo">Price</label>
+                      <input type="text" class="form-control" id="photo" name="money">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+{% endfor %}
 {% endblock content %}

@@ -27,11 +27,12 @@
              </ul>
           </li>
           <li class="submenu">
-             <a href="#"><i class="fas fa-user-graduate"></i> <span>History</span> <span class="menu-arrow"></span></a>
+             <a href="#"><i class="fas fa-user-graduate"></i> <span>medications</span> <span class="menu-arrow"></span></a>
              <ul>
-                 <li><a href="">Patients</a></li>
-                <li><a href="">Appointments</a></li>
-                <li><a href="">Payments</a></li>
+                 <li><a href="{% url 'secretary:family' %}">Add Family midications</a></li>
+                <li><a href="{% url 'secretary:med' %}">Add midications</a></li>
+                <li><a href="{% url 'secretary:med_list' %}">list of midications</a></li>
+                
              </ul>
           </li>
 

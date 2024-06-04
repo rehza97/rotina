@@ -8,12 +8,12 @@
 <div class="page-header">
   <div class="row align-items-center">
     <div class="col">
-      <h3 class="page-title">Patients</h3>
+      <h3 class="page-title">meds</h3>
       <ul class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Patients</li>
+        <li class="breadcrumb-item active">med</li>
       </ul>
     </div>
 
@@ -31,28 +31,20 @@
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-                <th>blood</th>
-                <th>Gender</th>
+                <th>family</th>
+                
 
-                <th class="text-right">Action</th>
               </tr>
             </thead>
             <tbody>
 
-                {% for persone in patients %}
+                {% for persone in meds %}
               <tr>
                 
-                <td>
-                  <h2>
-                    <a href="{% url 'user_profile' persone.id %}">{{persone.first_name}} {{persone.last_name}}</a>
-                  </h2>
-                </td>
-                <td>{{persone.email}}</td>
-                <td>{{persone.phone}}</td>
-                <td>{{persone.blood_type}}</td>
-                <td>{{persone.gender}}</td>
+
+                <td>{{persone.name}}</td>
+                <td>{{persone.family.name}}</td>
+
 
               </tr>
                 

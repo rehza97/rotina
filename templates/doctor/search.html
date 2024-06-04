@@ -16,7 +16,12 @@
     <div class="top-nav-search">
         <form method="POST" action="{% url 'doctor:search' %}">
             {% csrf_token %}
-            <input type="text" class="form-control" name="username" placeholder="Search here">
+            <input type="text" class="form-control" list="patient" name="full_name" placeholder="Search here">
+            <datalist id="patient">
+                {% for acc in myfilter %}
+                <option value="{{ acc.last_name }} {{ acc.first_name }}">{{ acc.last_name }} {{ acc.first_name }}</option>
+                {% endfor %}
+            </datalist>
             <button class="btn info" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
@@ -74,12 +79,126 @@
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-info btn-lg">Upload Photo</button>
-                <button type="button" class="btn btn-info btn-lg">Print Prescription</button>
-                <button type="button" class="btn btn-info btn-lg">Analyses</button>
-                <button type="button" class="btn btn-info btn-lg">Appication</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#uploadPhotoModal">Upload Photo</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#printPrescriptionModal">Prescription</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#analysesModal">Analyses</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#applicationModal">Application</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="">Chronic</button>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Upload Photo Modal -->
+<div class="modal fade" id="uploadPhotoModal" tabindex="-1" role="dialog" aria-labelledby="uploadPhotoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadPhotoModalLabel">Upload Photo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="photo">Select photo</label>
+                        <input type="file" class="form-control" id="photo" name="photo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Print Prescription Modal -->
+<div class="modal fade" id="printPrescriptionModal" tabindex="-1" role="dialog" aria-labelledby="printPrescriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="printPrescriptionModalLabel"> Prescription</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="prescription_details">Prescription Details</label>
+                        <textarea class="form-control" id="prescription_details" name="prescription_details" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Print</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Analyses Modal -->
+<div class="modal fade" id="analysesModal" tabindex="-1" role="dialog" aria-labelledby="analysesModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="analysesModalLabel">Analyses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="analysis_details">Analysis Details</label>
+                        <textarea class="form-control" id="analysis_details" name="analysis_details" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Application Modal -->
+<div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applicationModalLabel">Application</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="application_details">Application Details</label>
+                        <textarea class="form-control" id="application_details" name="application_details" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Add these script tags to ensure modals work correctly -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 {% endblock content %}
