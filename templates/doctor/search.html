@@ -135,7 +135,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="">
+            <form id="prescriptionForm" method="POST" action="">
                 {% csrf_token %}
                 <div class="modal-body">
                     <div class="form-group">
@@ -145,7 +145,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Print</button>
+                    <button type="button" class="btn btn-primary" onclick="printPrescription()">Print</button>
                 </div>
             </form>
         </div>
@@ -231,6 +231,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    function printPrescription() {
+        // Ciblez le formulaire de prescription
+        var prescriptionForm = document.getElementById("prescriptionForm");
+
+        // Imprimez le contenu du formulaire
+        window.print();
+    }
+</script>
 
 <!-- Add these script tags to ensure modals work correctly -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
