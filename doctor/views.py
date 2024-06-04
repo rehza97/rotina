@@ -45,12 +45,47 @@ def search(request):
     }
     return render(request, 'doctor/search.html', context)
 
+def consiltation(request):
+    pass
 
-# def search_accounts(request):
-#     email = request.POST.get('search')
-#     if request.POST == 'POST':
+def chronic(request,id):
+    patients = Account.objects.get(id=id)
+    patient = Patient.objects.get(user = patients)
+    if request.method == 'POST':
+        ch = request.POST.get('chronic')
+        chronic = Chronic.objects.create(name = ch)
+        patient.chronic = chronic
+        patient.save()
+        context = {'patients': patients,'patient': patient,}
+        return render(request, 'doctor/search.html', context)
+    context = {'patients': patients,'patient': patient,}
+    return render(request, 'doctor/search.html',context)
+    
+
+def analyses(request,id):
+    patients = Account.objects.get(id=id)
+    
+    if request.method == 'POST':
+        analise = request.POST.get('analise')
+        date = request.POST.get('date')
+        analyses = MedAnalyses.objects.create(
+            patient = patients,
+            meds = analise,
+            date = date
+        )
         
-#     context = {
+        return render(request, 'doctor/search.html', context)
+    context = {'patients': patients,'analyses': analyses,}
+    return render(request, 'doctor/search.html',context)
+    
      
-#     }
-#     return render(request, 'search_results.html', context)
+
+    
+def medicaments(request):
+    pass
+
+def certaficat(request):
+    pass
+
+
+

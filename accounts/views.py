@@ -36,6 +36,7 @@ def create_account(request):
             user.is_patient = True  
             user.email = user.username
             user.save()
+            Patient.objects.create(user=user)
             return redirect('log_reg_page') 
         else:
             context = {

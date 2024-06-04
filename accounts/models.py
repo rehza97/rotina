@@ -31,6 +31,7 @@ class Account(AbstractUser):
     is_patient = models.BooleanField(default=False, blank=True, null=True)
     is_doctor = models.BooleanField(default=False, blank=True, null=True)
     is_secretary = models.BooleanField(default=False, blank=True, null=True)
+    
     specialty = models.CharField(max_length=200, blank=True, null=True)
 
     def __str__(self):
@@ -38,7 +39,7 @@ class Account(AbstractUser):
 
 class Patient(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='patient_profile')
-    chronic = models.ForeignKey('Chronic', on_delete=models.CASCADE)
+    chronic = models.ForeignKey('Chronic', on_delete=models.CASCADE,blank=True,null=True)
     # Add additional fields specific to patients
 
 class Secretary(models.Model):
@@ -91,4 +92,11 @@ class MedFam(models.Model):
 
 class Meddication(models.Model):
     family = models.ForeignKey(MedFam, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, blank=True, null=True)
+
+
+class Consultation(models.Model):
+    patient = models.ForeignKey(Account,on_delete=models.CASCADE)
+    cert = models.ForeignKey(MedicalCert,on_delete=models.CASCADE)
+    presp = models.ForeignKey(Prescription,on_delete=models.CASCADE)
+    analiyses = models.ForeignKey(MedAnalyses,on_delete=models.CASCADE)

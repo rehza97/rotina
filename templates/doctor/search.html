@@ -70,6 +70,15 @@
                         {{ patients.wilaya }} - {{ patients.postal_code }}<br>
                     </p>
                 </div>
+                {% if patient.chronic %}
+                <div class="row">
+                    <p class="col-sm-3 text-muted text-sm-right mb-0">chronic</p>
+                    <p class="col-sm-9 mb-0">
+                        {{ patient.chronic.name }}<br>
+                    </p>
+                </div>
+                  
+                {% endif %}
             </div>
         </div>
     </div>
@@ -83,7 +92,7 @@
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#printPrescriptionModal">Prescription</button>
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#analysesModal">Analyses</button>
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#applicationModal">Application</button>
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="">Chronic</button>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Chronic">Chronic</button>
             </div>
         </div>
     </div>
@@ -186,6 +195,32 @@
                     <div class="form-group">
                         <label for="application_details">Application Details</label>
                         <textarea class="form-control" id="application_details" name="application_details" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Application Modal -->
+<div class="modal fade" id="Chronic" tabindex="-1" role="dialog" aria-labelledby="Chronic" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="applicationModalLabel">Chronic sicknes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="{% url 'doctor:chronic' patients.id %}">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="application_details">discription</label>
+                        <textarea class="form-control" id="application_details" name="chronic" rows="4"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
