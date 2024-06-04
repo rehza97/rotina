@@ -96,7 +96,7 @@ class Meddication(models.Model):
 
 
 class Consultation(models.Model):
-    patient = models.ForeignKey(Account,on_delete=models.CASCADE)
-    cert = models.ForeignKey(MedicalCert,on_delete=models.CASCADE)
-    presp = models.ForeignKey(Prescription,on_delete=models.CASCADE)
-    analiyses = models.ForeignKey(MedAnalyses,on_delete=models.CASCADE)
+    patient = models.ForeignKey(Account,on_delete=models.CASCADE, blank=True, null=True)
+    cert = models.ForeignKey(MedicalCert,on_delete=models.CASCADE, blank=True, null=True)
+    presp = models.ForeignKey(Prescription,on_delete=models.CASCADE, blank=True, null=True)
+    analiyses = models.ForeignKey(MedAnalyses,on_delete=models.CASCADE, blank=True, null=True)
